@@ -15,8 +15,7 @@ VOLUME [ "/findup_result", \
 
 # install all required packages and updates
 RUN apt-get update && \
-	apt-get install -y apt-utils fdupes && \
-	apt-get clean && \
+	apt-get install --no-install-recommends -y apt-utils fdupes && \
 	rm -rf /var/lib/apt/lists/*
 
 # Create workspace directory & mark it as working directory
@@ -24,8 +23,8 @@ RUN mkdir /home/findup
 WORKDIR /home/findup
 
 # Copy scripts into WORKDIR -> changes more often than basic setup
-COPY ./scripts/*.sh ./
+COPY ./scripts/findduplicates.sh ./findduplicates.sh
 
-RUN chmod +x *.sh
+RUN chmod +x ./findduplicates.sh
 
 ENTRYPOINT [ "./findduplicates.sh" ]
