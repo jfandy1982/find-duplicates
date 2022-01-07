@@ -26,27 +26,27 @@ mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Remove results with less than 2 remaining duplicates..."
 while IFS= read -r FDUPES_RESULT_LINE; do
-    if [ -z "${FDUPES_RESULT_LINE}" ]; then
+	if [ -z "${FDUPES_RESULT_LINE}" ]; then
 
-        if [ ${#FDUPES_FILE_LIST[*]} -gt 1 ]; then
-            echo "${FDUPES_RECORD_SUMMARY_LINE}" >>"${RESULT_FILE_TMP}"
-            for FDUPES_FILE_ITEM in "${FDUPES_FILE_LIST[@]}"; do
-                echo "$FDUPES_FILE_ITEM" >>"${RESULT_FILE_TMP}"
-            done
-            echo '' >>"${RESULT_FILE_TMP}"
+		if [ ${#FDUPES_FILE_LIST[*]} -gt 1 ]; then
+			echo "${FDUPES_RECORD_SUMMARY_LINE}" >>"${RESULT_FILE_TMP}"
+			for FDUPES_FILE_ITEM in "${FDUPES_FILE_LIST[@]}"; do
+				echo "$FDUPES_FILE_ITEM" >>"${RESULT_FILE_TMP}"
+			done
+			echo '' >>"${RESULT_FILE_TMP}"
 
-        fi
+		fi
 
-        unset FDUPES_RECORD_SUMMARY_LINE
-        unset FDUPES_FILE_LIST
-        unset FDUPES_FILE_ITEM
-    else
-        if [[ "${FDUPES_RESULT_LINE}" == *"bytes each:"* ]]; then
-            FDUPES_RECORD_SUMMARY_LINE="${FDUPES_RESULT_LINE}"
-        else
-            FDUPES_FILE_LIST+=("${FDUPES_RESULT_LINE}")
-        fi
-    fi
+		unset FDUPES_RECORD_SUMMARY_LINE
+		unset FDUPES_FILE_LIST
+		unset FDUPES_FILE_ITEM
+	else
+		if [[ "${FDUPES_RESULT_LINE}" == *"bytes each:"* ]]; then
+			FDUPES_RECORD_SUMMARY_LINE="${FDUPES_RESULT_LINE}"
+		else
+			FDUPES_FILE_LIST+=("${FDUPES_RESULT_LINE}")
+		fi
+	fi
 done <"${RESULT_FILE}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
