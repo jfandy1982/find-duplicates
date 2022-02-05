@@ -1,11 +1,12 @@
 name: Update DockerHub Repository Description
 
 on:
-  push:
-    branches: [ main ]
-    paths:
-      - docs/docker/docker.md
-      - .github/workflows/update_dockerhub_description.yml
+  workflow_dispatch:
+  # push:
+  #   branches: [ main ]
+  #   paths:
+  #     - docs/docker/docker.md
+  #     - .github/workflows/update_dockerhub_description.yml
 
 jobs:
   docker-sync-readme:

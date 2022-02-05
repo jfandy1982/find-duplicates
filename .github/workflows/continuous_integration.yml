@@ -1,25 +1,26 @@
 name: Development Pipeline
 
 on:
-  push:
-    branches: [ dev ]
-    paths-ignore:
-    - '**.md'
-    - '**.*ignore'
-    - 'docs/**'
-    - '.github/workflows/retention_period.yml'
-    - '.github/workflows/update_dockerhub_description.yml'
-    - '.github/dependabot.yml'
+  workflow_dispatch:
+  # push:
+  #   branches: [ dev ]
+  #   paths-ignore:
+  #   - '**.md'
+  #   - '**.*ignore'
+  #   - 'docs/**'
+  #   - '.github/workflows/retention_period.yml'
+  #   - '.github/workflows/update_dockerhub_description.yml'
+  #   - '.github/dependabot.yml'
 
-  pull_request:
-    branches: [ main ]
-    paths-ignore:
-    - '**.md'
-    - '**.*ignore'
-    - 'docs/**'
-    - '.github/workflows/retention_period.yml'
-    - '.github/workflows/update_dockerhub_description.yml'
-    - '.github/dependabot.yml'
+  # pull_request:
+  #   branches: [ main ]
+  #   paths-ignore:
+  #   - '**.md'
+  #   - '**.*ignore'
+  #   - 'docs/**'
+  #   - '.github/workflows/retention_period.yml'
+  #   - '.github/workflows/update_dockerhub_description.yml'
+  #   - '.github/dependabot.yml'
 
 jobs:
   build:
