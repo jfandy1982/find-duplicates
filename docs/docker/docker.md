@@ -11,3 +11,7 @@ Spawn a container by:
 ```bash
 docker run jfandy1982/find-duplicates:latest
 ```
+
+## License
+
+Check-out the license in the file [LICENSE.md](https://github.com/jfandy1982/find-duplicates/blob/main/LICENSE.md) stored in the Github repository.
