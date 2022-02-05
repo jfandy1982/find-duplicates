@@ -1,16 +1,15 @@
-# ---------------------------------------------------------------------------------*
-# This will prevent your local modules and debug logs from being copied onto your
-# Docker image and possibly overwriting modules installed within your image.
-# ---------------------------------------------------------------------------------*
-node_modules
-npm-debug.log
-
 .git
 .cache
-.github/
-.husky/
-.vscode/
+.github
+.husky
+.vscode
 
-# ignore all markdown files (*.md) beside all README*.md
+docs
+
 *.md
-!README*.md
+*.yml
+.*ignore
+*.json
+
+.env
+.env.sample
