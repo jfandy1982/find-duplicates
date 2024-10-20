@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:latest
 
 LABEL name="Find duplicates (using fdupes tooling)"
 LABEL author="Andreas Ziegler (dev@andreasziegler.net)"
@@ -11,7 +11,8 @@ VOLUME [ "/findup_result", \
 	"/findup_data02", \
 	"/findup_data03", \
 	"/findup_data04", \
-	"/findup_data05" ]
+	"/findup_data05", \
+	"/findup_data06" ]
 
 # install all required packages and updates
 RUN apt-get update && \
