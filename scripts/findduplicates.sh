@@ -14,7 +14,7 @@ echo 'FDupes Tool Version:'
 fdupes -v
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Start check for duplicates using tool FDUPES..."
-fdupes -r -S /findup_data01 /findup_data02 /findup_data03 /findup_data04 /findup_data05 >"${RESULT_FILE}"
+fdupes -r -S /findup_data01 /findup_data02 /findup_data03 /findup_data04 /findup_data05 /findup_data06 >"${RESULT_FILE}"
 cp "${RESULT_FILE}" "${RESULT_FILE_RAW}"
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Remove unneccessary records pointing unwantend folders like [#recycle]..."
@@ -64,6 +64,9 @@ sed 's;findup_data04;volume1/music;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
 sed 's;findup_data05;volume1/photo;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
+mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
+
+sed 's;findup_data06;volume1/video;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
 exit 0
