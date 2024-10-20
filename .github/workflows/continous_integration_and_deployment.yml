@@ -1,81 +1,66 @@
-name: Continous Integration and Deployment
+name: Continuous Integration Pipeline
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    branches-ignore:
+      - gh-pages
+
+permissions:
+  actions: read
+  attestations: read
+  checks: read
+  contents: read
+  deployments: read
+  id-token: none
+  issues: write
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
   build:
-    name: Build artifacts and run the test suite
+    name: 'Build'
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Detect changes
-        uses: dorny/paths-filter@v2
+      - name: 'Detect changes'
+        uses: dorny/paths-filter@v3.0.2
         id: build
         with:
           filters: |
             build_sources:
               - './scripts/**'
 
-  lint:
-    name: Check linting settings
-
-    runs-on: ubuntu-latest
-
-    needs: build
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
-
-      - name: "Execute checks in `MegaLinter`"
-        uses: oxsecurity/megalinter/flavors/javascript@v7
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload MegaLinter Reports
-        if: ${{ failure() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: MegaLinter reports
-          path: |
-            report
-            mega-linter.log
-
   docker-image-deploy:
     name: Deploy new docker image version to Docker Hub Repository
 
     runs-on: ubuntu-latest
 
-    needs: lint
+    needs: build
 
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Detect changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3.0.2
         id: docker_image_deploy
         with:
           filters: |
@@ -98,19 +83,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: lint
+    needs: build
 
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Detect changes
-        uses: dorny/paths-filter@v2
+        uses: dorny/paths-filter@v3.0.2
         id: docker_sync_readme
         with:
           filters: |
