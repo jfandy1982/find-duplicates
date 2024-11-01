@@ -2,3 +2,4 @@
 *.log
 
 megalinter-reports/
+.pnotes/
