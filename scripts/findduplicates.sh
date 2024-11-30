@@ -10,6 +10,11 @@ RESULT_FILE_TMP="/findup_result/fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
 FDUPES_RECORD_SUMMARY_LINE=''
 FDUPES_FILE_LIST=()
 
+get_file_path_with_search_patterns() {
+    local RESULT="/findup_config/search_pattern_list.txt"
+    echo "${RESULT}"
+}
+
 echo 'FDupes Tool Version:'
 fdupes -v
 
@@ -18,11 +23,16 @@ fdupes -r -S -q /findup_data01 /findup_data02 /findup_data03 /findup_data04 /fin
 cp "${RESULT_FILE}" "${RESULT_FILE_RAW}"
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Remove unneccessary records pointing unwantend folders like [#recycle]..."
-grep -v '\@eaDir' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
-mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
-grep -v '\#recycle' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
-mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
+LIST_OF_SEARCH_PATTERN=$(get_file_path_with_search_patterns)
+while read -r SEARCH_PATTERN_LINE; do
+	echo ">>> Search pattern [${SEARCH_PATTERN_LINE}] ==="
+
+	grep -v '${SEARCH_PATTERN_LINE}' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
+	mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
+
+	echo "<<< Tasks for search pattern [${SEARCH_PATTERN_LINE}] completed ==="
+done <"${LIST_OF_SEARCH_PATTERN}"
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Remove results with less than 2 remaining duplicates..."
 while IFS= read -r FDUPES_RESULT_LINE; do
