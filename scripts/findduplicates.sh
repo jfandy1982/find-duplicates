@@ -9,6 +9,7 @@ RESULT_FILE_RAW="/findup_result/fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
 RESULT_FILE_TMP="/findup_result/fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
 FDUPES_RECORD_SUMMARY_LINE=''
 FDUPES_FILE_LIST=()
+MAX_RECORDS=500
 
 get_file_path_with_search_patterns() {
     local RESULT="/findup_config/search_pattern_list.txt"
@@ -49,11 +50,17 @@ while IFS= read -r FDUPES_RESULT_LINE; do
 			done
 			echo '' >>"${RESULT_FILE_TMP}"
 
+			MAX_RECORDS=${MAX_RECORDS} - 1
 		fi
 
 		unset FDUPES_RECORD_SUMMARY_LINE
 		unset FDUPES_FILE_LIST
 		unset FDUPES_FILE_ITEM
+
+		if [ "${MAX_RECORDS}" -eq 0 ]; then
+			break
+		fi
+
 	else
 		if [[ "${FDUPES_RESULT_LINE}" == *"bytes each:"* ]]; then
 			FDUPES_RECORD_SUMMARY_LINE="${FDUPES_RESULT_LINE}"
