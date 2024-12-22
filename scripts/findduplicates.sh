@@ -50,7 +50,7 @@ while IFS= read -r FDUPES_RESULT_LINE; do
 			done
 			echo '' >>"${RESULT_FILE_TMP}"
 
-			MAX_RECORDS=${MAX_RECORDS} - 1
+			((MAX_RECORDS--))
 		fi
 
 		unset FDUPES_RECORD_SUMMARY_LINE
