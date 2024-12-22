@@ -29,26 +29,11 @@ while read -r SEARCH_PATTERN_LINE; do
 	echo ">>> Search pattern [${SEARCH_PATTERN_LINE}] ==="
 
 	grep -v "${SEARCH_PATTERN_LINE}" "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
-	if [ $? -ne 0 ]; then
-		echo "Error while removing search pattern [${SEARCH_PATTERN_LINE}]"
-		exit 1
+	if [ $? -eq 0 ]; then
+		mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
+	else
+		echo "Nothing removed from result file with search pattern [${SEARCH_PATTERN_LINE}]."
 	fi
-
-	sleep 5
-	cp "${RESULT_FILE_TMP}" "/findup_result/fdupes_result_${CURRENT_TIMESTAMP}_${SEARCH_PATTERN_LINE}.txt"
-	if [ $? -ne 0 ]; then
-		echo "Error while copying intermediate file with search pattern results"
-		exit 1
-	fi
-
-	sleep 5
-	mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
-	if [ $? -ne 0 ]; then
-		echo "Error while moving file"
-		exit 1
-	fi
-
-	sleep 5
 
 	echo "<<< Tasks for search pattern [${SEARCH_PATTERN_LINE}] completed ==="
 done <"${LIST_OF_SEARCH_PATTERN}"
