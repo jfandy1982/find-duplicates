@@ -20,6 +20,7 @@ echo 'FDupes Tool Version:'
 fdupes -v
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Start check for duplicates using tool FDUPES..."
+pwd
 fdupes -r -S -q /findup_data01 /findup_data02 /findup_data03 /findup_data04 /findup_data05 /findup_data06 >"${RESULT_FILE}"
 cp "${RESULT_FILE}" "${RESULT_FILE_RAW}"
 
