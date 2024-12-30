@@ -4,9 +4,9 @@
 #
 
 CURRENT_TIMESTAMP=$(date +'%Y%m%d%H%M%S')
-RESULT_FILE="./fdupes_result_${CURRENT_TIMESTAMP}.txt"
-RESULT_FILE_RAW="./fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
-RESULT_FILE_TMP="./fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
+RESULT_FILE="${PWD}/fdupes_result_${CURRENT_TIMESTAMP}.txt"
+RESULT_FILE_RAW="${PWD}/fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
+RESULT_FILE_TMP="${PWD}/fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
 FDUPES_RECORD_SUMMARY_LINE=''
 FDUPES_FILE_LIST=()
 MAX_RECORDS=500
