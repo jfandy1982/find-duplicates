@@ -4,9 +4,9 @@
 #
 
 CURRENT_TIMESTAMP=$(date +'%Y%m%d%H%M%S')
-RESULT_FILE="fdupes_result_${CURRENT_TIMESTAMP}.txt"
-RESULT_FILE_RAW="fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
-RESULT_FILE_TMP="fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
+RESULT_FILE="./fdupes_result_${CURRENT_TIMESTAMP}.txt"
+RESULT_FILE_RAW="./fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
+RESULT_FILE_TMP="./fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
 FDUPES_RECORD_SUMMARY_LINE=''
 FDUPES_FILE_LIST=()
 MAX_RECORDS=500
@@ -20,7 +20,6 @@ echo 'FDupes Tool Version:'
 fdupes -v
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Start check for duplicates using tool FDUPES..."
-pwd
 fdupes -r -S -q /findup_data01 /findup_data02 /findup_data03 /findup_data04 /findup_data05 /findup_data06 >"${RESULT_FILE}"
 cp "${RESULT_FILE}" "${RESULT_FILE_RAW}"
 
