@@ -4,9 +4,9 @@
 #
 
 CURRENT_TIMESTAMP=$(date +'%Y%m%d%H%M%S')
-RESULT_FILE="/findup_result/fdupes_result_${CURRENT_TIMESTAMP}.txt"
-RESULT_FILE_RAW="/findup_result/fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
-RESULT_FILE_TMP="/findup_result/fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
+RESULT_FILE="fdupes_result_${CURRENT_TIMESTAMP}.txt"
+RESULT_FILE_RAW="fdupes_result_${CURRENT_TIMESTAMP}_raw.txt"
+RESULT_FILE_TMP="fdupes_result_${CURRENT_TIMESTAMP}_tmp.txt"
 FDUPES_RECORD_SUMMARY_LINE=''
 FDUPES_FILE_LIST=()
 MAX_RECORDS=500
@@ -89,5 +89,8 @@ mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
 sed 's;findup_data06;volume1/video;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
+
+cp "${RESULT_FILE}" "/findup_result/${RESULT_FILE}"
+cp "${RESULT_FILE_RAW}" "/findup_result/${RESULT_FILE_RAW}"
 
 exit 0
