@@ -72,26 +72,30 @@ done <"${RESULT_FILE}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
 echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace file path mappings to match outside world again..."
+echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data01] with [volume1/austausch]"
 sed 's;findup_data01;volume1/austausch;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
+echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data02] with [volume1/daten]"
 sed 's;findup_data02;volume1/daten;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
+echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data03] with [volume1/homes]"
 sed 's;findup_data03;volume1/homes;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
+echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data04] with [volume1/music]"
 sed 's;findup_data04;volume1/music;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
+echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data05] with [volume1/photo]"
 sed 's;findup_data05;volume1/photo;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
+echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data06] with [volume1/video]"
 sed 's;findup_data06;volume1/video;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
-# copy the result files for external usage
-#cp "${RESULT_FILE}" "/findup_result/${RESULT_FILE}"
-#cp "${RESULT_FILE_RAW}" "/findup_result/${RESULT_FILE_RAW}"
+echo "$(date +'%Y-%m-%d %H:%M:%S'): All steps completed. Result file is available at [${RESULT_FILE}]. Exiting..."
 
 exit 0
