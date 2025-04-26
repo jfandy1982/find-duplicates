@@ -96,4 +96,6 @@ echo "$(date +'%Y-%m-%d %H:%M:%S'): Replace [findup_data06] with [volume1/video]
 sed 's;findup_data06;volume1/video;g' "${RESULT_FILE}" >"${RESULT_FILE_TMP}"
 mv "${RESULT_FILE_TMP}" "${RESULT_FILE}"
 
+echo "$(date +'%Y-%m-%d %H:%M:%S'): All steps completed. Result file is available at [${RESULT_FILE}]. Exiting..."
+
 exit 0
