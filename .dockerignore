@@ -1,0 +1,33 @@
+# dependencies
+node_modules
+
+# experiments / test data
+experiments
+
+# IDE
+.vscode
+
+# environment variables
+.env
+.env.local
+.env.*.local
+.env.sample
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Version control & CI
+.git
+.cache
+.github
+.husky
+
+# Documentation
+docs
+*.md
+
+# Config files not needed in image
+*.yml
+.*ignore
+*.json

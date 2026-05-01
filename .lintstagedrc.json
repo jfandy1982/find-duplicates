@@ -1,0 +1,3 @@
+{
+  "**/*.{json,md,yml,yaml}": ["prettier --write", "cspell lint --no-must-find-files --no-progress"]
+}
