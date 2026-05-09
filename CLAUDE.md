@@ -7,6 +7,7 @@ Docker image wrapping the `fdupes` CLI tool to find duplicate files on a filesys
 ## Known Structure
 
 - `experiments/` — contains experimental attempts as well as test data for checking the functionality locally
+  - `experiments/superpowers/` — brainstorming specs and implementation plans from Claude sessions (gitignored, local only); check here for prior design decisions before starting new work
 - `node_modules/` — exists locally but is gitignored; not committed to the repo
 
 ## Tooling
