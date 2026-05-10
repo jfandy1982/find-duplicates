@@ -14,7 +14,7 @@ Docker image wrapping the `fdupes` CLI tool to find duplicate files on a filesys
 
 - GitHub Actions SHAs are manually verified and pinned — do not flag pinned SHAs as outdated without checking first
 - Renovate: `renovate.json` in `.github/` is the repository-specific Renovate entry point; the `schedule` override there is intentional
-- pre-commit hook runs `lint-staged` (Prettier + cspell) on `*.json`, `*.md`, `*.yml`
+- pre-commit hook runs `lint-staged` (Prettier + cspell) on `*.json`, `*.md`, `*.yml`; additionally runs `js-yaml` syntax validation on `*.yml`, `*.yaml`
 
 ### Commands
 
