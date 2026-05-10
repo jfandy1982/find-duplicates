@@ -5,8 +5,8 @@
     "format:all": "prettier --write .",
     "format:all:check": "prettier --check .",
     "prepare": "husky || true",
-    "spell:check:all": "cspell lint --dot --show-suggestions --no-progress --no-must-find-files --config ./.cspell.json .",
-    "spell:search:dict": "cspell trace --all --config ./.cspell.json",
+    "spell:all:check": "cspell lint --dot --show-suggestions --no-progress --no-must-find-files --config ./.cspell.json .",
+    "spell:dict:search": "cspell trace --all --config ./.cspell.json",
     "yaml:all:check": "find .github/workflows -name '*.yml' -exec js-yaml {} \\;"
   },
   "devDependencies": {
