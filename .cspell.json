@@ -23,6 +23,7 @@
     "coreutils",
     "debian",
     "dockerhub",
+    "dotclaude",
     "fdupes",
     "findduplicates",
     "findup",
@@ -31,7 +32,8 @@
     "jfandy1982",
     "linux",
     "mawk",
-    "nocasematch"
+    "nocasematch",
+    "sdlc"
   ],
   "words": []
 }
